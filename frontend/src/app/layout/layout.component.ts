@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CurrentUserService } from '../core/current-user.service';
 
 @Component({
   selector: 'app-layout',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.less'],
 })
 export class LayoutComponent implements OnInit {
-  constructor() {}
+  constructor(public currentUserService: CurrentUserService) {}
 
   isCollapsed = false;
 
