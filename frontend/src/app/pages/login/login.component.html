@@ -1,1 +1,47 @@
-<p>login works!</p>
+<form
+  nz-form
+  [formGroup]="loginForm"
+  class="login-form"
+  (ngSubmit)="submitForm()"
+>
+  <div style="text-align: center; font-size: 24px; margin-bottom: 30px">
+    问卷调查后台管理系统
+  </div>
+  <nz-form-item>
+    <nz-form-label nzFor="userName" nzSpan="4" nzRequired>账号</nz-form-label>
+    <nz-form-control nzErrorTip="请输入正确的账号">
+      <nz-input-group>
+        <input
+          type="text"
+          nz-input
+          formControlName="userName"
+          placeholder="请输入账号"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="password" nzSpan="4" nzRequired>密码</nz-form-label>
+
+    <nz-form-control nzErrorTip="请输入正确的密码">
+      <nz-input-group>
+        <input
+          type="password"
+          nz-input
+          formControlName="password"
+          placeholder="请输入密码"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button
+    [disabled]="loginForm.invalid"
+    nz-button
+    class="login-form-button login-form-margin"
+    [nzType]="'primary'"
+  >
+    登录
+  </button>
+
+  <a>注册</a>
+</form>

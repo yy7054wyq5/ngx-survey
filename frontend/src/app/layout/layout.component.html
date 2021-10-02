@@ -49,7 +49,14 @@
           ></i>
         </span>
         <div class="user">
-          {{ currentUserService?.data?.accout }}
+          <button nz-button nzType="link" nz-dropdown [nzDropdownMenu]="menu">
+            {{ currentUserService?.data?.accout }}
+          </button>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item (click)="memberService.logout()">退出</li>
+            </ul>
+          </nz-dropdown-menu>
         </div>
       </div>
     </nz-header>

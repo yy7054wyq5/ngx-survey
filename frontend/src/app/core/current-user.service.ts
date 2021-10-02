@@ -4,9 +4,16 @@ export interface CurrentUser {
   accout: string;
 }
 
+const currentUser = 'currentUser';
+
 @Injectable({ providedIn: 'root' })
 export class CurrentUserService {
-  constructor() {}
+  constructor() {
+    const data = localStorage.getItem(currentUser);
+    if (data) {
+      this.data = JSON.parse(data);
+    }
+  }
 
   data: CurrentUser | null;
 
@@ -15,6 +22,7 @@ export class CurrentUserService {
       throw new Error('update() data 无效');
     }
     this.data = data;
+    localStorage.setItem('currentUser', JSON.stringify(data));
   }
 
   clear(): void {

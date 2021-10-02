@@ -19,7 +19,11 @@
     "@angular/platform-browser": "~12.2.7",
     "@angular/platform-browser-dynamic": "~12.2.7",
     "@angular/router": "~12.2.7",
-    "ng-zorro-antd": "^10.2.2",
+    "@types/crypto-js": "^4.0.2",
+    "@types/lodash": "^4.14.175",
+    "crypto-js": "^4.1.1",
+    "lodash": "^4.17.21",
+    "ng-zorro-antd": "^12.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
