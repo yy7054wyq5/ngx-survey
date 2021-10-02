@@ -13,7 +13,5 @@ export class LayoutComponent implements OnInit {
     public memberService: MemberService
   ) {}
 
-  isCollapsed = false;
-
   ngOnInit(): void {}
 }

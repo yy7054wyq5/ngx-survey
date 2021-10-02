@@ -7,6 +7,7 @@ import { SurveyClassifyComponent } from './pages/survey-classify/survey-classify
 import { SurveyTemplateComponent } from './pages/survey-template/survey-template.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { LoginGuard } from './core/login.guard';
+import { SysSettingComponent } from './pages/sys-setting/sys-setting.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     canActivateChild: [LoginGuard],
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'survey',
+      },
       {
         path: 'member',
         component: MemberComponent,
@@ -34,6 +40,10 @@ const routes: Routes = [
       {
         path: 'survey',
         component: SurveyComponent,
+      },
+      {
+        path: 'sys-setting',
+        component: SysSettingComponent,
       },
     ],
   },

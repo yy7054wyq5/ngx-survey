@@ -17,6 +17,7 @@ import { SurveyComponent } from './pages/survey/survey.component';
 import { SurveyTemplateComponent } from './pages/survey-template/survey-template.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from './shared/shared.module';
+import { SysSettingComponent } from './pages/sys-setting/sys-setting.component';
 
 registerLocaleData(zh);
 
@@ -29,6 +30,7 @@ registerLocaleData(zh);
     SurveyComponent,
     SurveyTemplateComponent,
     LoginComponent,
+    SysSettingComponent,
   ],
   imports: [
     SharedModule,
