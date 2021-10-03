@@ -59,7 +59,7 @@
     <div nz-col="8">
       <button nz-button nzType="primary">搜索</button>
       &nbsp;
-      <button nz-button (click)="submit()">创建</button>
+      <button nz-button (click)="surveyService.goTemplate()">创建</button>
     </div>
   </div>
 </form>
@@ -83,12 +83,30 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of data">
-      <td>{{ row.name }}</td>
+      <td>{{ row.title }}</td>
+      <td>{{ row.classify_name }}</td>
       <td>{{ row.creator_name }}</td>
       <td>{{ row.creat_at | date: "yyyy-MM-dd HH:mm:ss" }}</td>
+      <td>{{ row.submit_at | date: "yyyy-MM-dd HH:mm:ss" }}</td>
+      <td>{{ row.submit_end | date: "yyyy-MM-dd HH:mm:ss" }}</td>
+      <td>{{ row.status_name }}</td>
       <td>
         <button nz-button nzSize="small">删除</button>&nbsp;
-        <button nz-button nzSize="small" (click)="submit(row)">编辑</button>
+        <button
+          nz-button
+          nzSize="small"
+          (click)="surveyService.goTemplate(row.id)"
+        >
+          编辑</button
+        >&nbsp;
+        <button
+          nz-button
+          nzType="primary"
+          nzSize="small"
+          (click)="surveyService.outGiving(row.id)"
+        >
+          分发
+        </button>
       </td>
     </tr>
   </tbody>
@@ -100,16 +118,3 @@
   [nzTotal]="page.items"
   (nzPageIndexChange)="query$.next({ page: $event })"
 ></nz-pagination>
-
-<ng-template #addClassifyTpl>
-  <form nz-form (ngSubmit)="submit()" [formGroup]="addClassifyForm">
-    <div nz-row>
-      <nz-form-item nz-col="24">
-        <nz-form-label nzFor="name" nzSpan="6">分类名</nz-form-label>
-        <nz-form-control>
-          <input nz-input formControlName="name" placeholder="分类名" />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-  </form>
-</ng-template>

@@ -46,7 +46,7 @@ const routes: Routes = [
             component: AddComponent,
           },
           {
-            path: 'add/:id',
+            path: 'add',
             component: AddComponent,
           },
         ],
