@@ -1,7 +1,7 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar" nzWidth="160px" nzBreakpoint="md">
+  <nz-sider class="menu-sidebar" nzWidth="200px" nzBreakpoint="md">
     <div class="sidebar-logo">
-      <h1>Survey Admin</h1>
+      <h1>问卷调查后台管理系统</h1>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li
@@ -33,6 +33,7 @@
         <span>成员管理</span>
       </li>
       <li
+        *ngIf="currentUserService?.data.accout === 'admin'"
         nz-menu-item
         routerLink="sys-setting"
         routerLinkActive="ant-menu-item-selected"

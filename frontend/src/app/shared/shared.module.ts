@@ -8,6 +8,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 const ZorroModules = [
   NzGridModule,
@@ -17,6 +20,9 @@ const ZorroModules = [
   NzMenuModule,
   NzFormModule,
   NzDropDownModule,
+  NzTableModule,
+  NzPaginationModule,
+  NzDatePickerModule,
 ];
 
 @NgModule({
