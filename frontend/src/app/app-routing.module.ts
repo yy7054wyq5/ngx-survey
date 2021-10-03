@@ -8,6 +8,7 @@ import { SurveyTemplateComponent } from './pages/survey-template/survey-template
 import { SurveyComponent } from './pages/survey/survey.component';
 import { LoginGuard } from './core/login.guard';
 import { SysSettingComponent } from './pages/sys-setting/sys-setting.component';
+import { AddComponent } from './pages/survey-template/add/add.component';
 
 const routes: Routes = [
   {
@@ -35,8 +36,22 @@ const routes: Routes = [
       },
       {
         path: 'survey-template',
-        component: SurveyTemplateComponent,
+        children: [
+          {
+            path: '',
+            component: SurveyTemplateComponent,
+          },
+          {
+            path: ':id',
+            component: AddComponent,
+          },
+          {
+            path: 'add/:id',
+            component: AddComponent,
+          },
+        ],
       },
+
       {
         path: 'survey',
         component: SurveyComponent,

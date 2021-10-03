@@ -4,7 +4,7 @@ import { Page, QueryPage } from '../../core/query-page.class';
 import { addHours, addDays } from 'date-fns';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { SurveyService } from '../../core/survey.service';
-import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-survey-classify',
@@ -37,44 +37,18 @@ export class SurveyClassifyComponent extends QueryPage implements OnInit {
       pageSize: [this.page.size],
     });
 
+    this.getQuery();
     this.query$.subscribe({
       next: (query) => {
-        // TODO: 查询
+        this.getQuery(query);
       },
     });
+  }
 
-    this.data = [
-      {
-        name: '教育',
-        creator_name: 'qwe111',
-        creat_at: new Date(),
-      },
-      {
-        name: '母婴',
-        creator_name: 'qwe111',
-        creat_at: addHours(new Date(), -2),
-      },
-      {
-        name: '建筑',
-        creator_name: 'qwe111',
-        creat_at: addHours(new Date(), +5),
-      },
-      {
-        name: '学前教育',
-        creator_name: 'qwe111',
-        creat_at: addDays(new Date(), -2),
-      },
-      {
-        name: '玩具',
-        creator_name: 'qwe111',
-        creat_at: addDays(new Date(), 1),
-      },
-    ];
-
-    this.page = new Page({
-      current: 1,
-      size: 10,
-      items: 1,
+  private getQuery(params?: any): any {
+    this.surveyService.getClassify(params).subscribe((res) => {
+      this.data = res.data;
+      this.page = res.page;
     });
   }
 

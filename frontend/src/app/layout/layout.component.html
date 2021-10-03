@@ -18,12 +18,17 @@
       >
         <span>问卷分类管理</span>
       </li>
-      <li
-        nz-menu-item
-        routerLink="survey-template"
-        routerLinkActive="ant-menu-item-selected"
-      >
-        <span>问卷模板管理</span>
+
+      <li nz-submenu nzTitle="问卷模板管理">
+        <ul>
+          <li
+            nz-menu-item
+            routerLink="survey-template"
+            routerLinkActive="ant-menu-item-selected"
+          >
+            <span>模板列表</span>
+          </li>
+        </ul>
       </li>
       <li
         nz-menu-item
