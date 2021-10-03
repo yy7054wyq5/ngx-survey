@@ -1,1 +1,220 @@
-<p>add works!</p>
+<form nz-form [formGroup]="form">
+  <nz-form-item nzFlex>
+    <nz-form-label nzFor="title" nzSpan="2" nzRequired>标题</nz-form-label>
+    <nz-form-control nzSpan="10">
+      <input nz-input formControlName="title" placeholder="请输入标题" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nzFlex>
+    <nz-form-label nzFor="classify" nzSpan="2" nzRequired>分类</nz-form-label>
+    <nz-form-control nzSpan="10">
+      <nz-select
+        nzAllowClear
+        formControlName="classify"
+        nzPlaceHolder="请选择分类"
+      >
+        <nz-option
+          *ngFor="let item of classifyList$ | async"
+          [nzLabel]="item.name"
+          [nzValue]="item.id"
+        >
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nzFlex>
+    <nz-form-label nzFor="submit_start" nzSpan="2" nzRequired
+      >开始提交时间</nz-form-label
+    >
+    <nz-form-control nzSpan="10">
+      <nz-date-picker
+        style="width: 100%"
+        formControlName="submit_start"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nzFlex>
+    <nz-form-label nzFor="submit_end" nzSpan="2" nzRequired
+      >结束提交时间</nz-form-label
+    >
+    <nz-form-control nzSpan="10">
+      <nz-date-picker
+        style="width: 100%"
+        formControlName="submit_end"
+      ></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nzFlex>
+    <nz-form-label nzFor="schema" nzSpan="2" nzRequired>问卷</nz-form-label>
+    <nz-form-control nzSpan="18">
+      <form formArrayName="schema">
+        <!-- 问卷开始 -->
+        <div
+          *ngFor="let row of schema.controls; let i = index"
+          style="border: 1px solid #000; padding: 20px; border-bottom: 0"
+        >
+          <form [formGroupName]="i">
+            <div>
+              <nz-form-item>
+                <nz-form-label
+                  nzSpan="0"
+                  [nzRequired]="schemaItem(i).value.isRequired"
+                  nzNoColon
+                  >{{ i + 1 }} .</nz-form-label
+                >
+                <nz-form-control nzSpan="24">
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="title"
+                    placeholder="请输入题目"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-row>
+              <!-- 选项区域 -->
+              <ng-container
+                *ngIf="
+                  schemaItem(i).value.type === AskType.TextArea;
+                  else noTextarea
+                "
+              >
+                <nz-form-item style="width: 90%">
+                  <textarea
+                    nz-input
+                    cols="3"
+                    rows="2"
+                    style="margin-left: 35px"
+                  ></textarea>
+                </nz-form-item>
+              </ng-container>
+
+              <ng-template #noTextarea>
+                <!-- 选项操作 -->
+                <form formArrayName="options" style="width: 100%">
+                  <div nz-row class="flex-item-center">
+                    <ng-container
+                      *ngFor="
+                        let option of optionsInSchemaItem(i).controls;
+                        index as optionIndex
+                      "
+                    >
+                      <input
+                        *ngIf="schemaItem(i).value.type === AskType.Radio"
+                        type="radio"
+                        style="margin-bottom: 25px"
+                      />
+                      <input
+                        *ngIf="schemaItem(i).value.type === AskType.Checkbox"
+                        type="checkbox"
+                        style="margin-bottom: 25px"
+                      />
+                      &nbsp;
+
+                      <nz-form-item style="width: 90%">
+                        <nz-form-label nzSpan="0" nzNoColon
+                          >{{ Words[optionIndex] }}.</nz-form-label
+                        >
+                        <nz-form-control nzSpan="24">
+                          <form [formGroupName]="optionIndex">
+                            <input
+                              type="text"
+                              nz-input
+                              [formControlName]="optionIndex"
+                              placeholder="请输入选项文字"
+                            />
+                          </form>
+                        </nz-form-control>
+                      </nz-form-item>
+                      <nz-form-item>
+                        <!-- 添加选项 -->
+                        <button
+                          nz-button
+                          nzType="primary"
+                          nzSize="small"
+                          (click)="
+                            changeAskAnswerOptions(
+                              optionsInSchemaItem(i),
+                              optionIndex
+                            )
+                          "
+                        >
+                          +
+                        </button>
+                        &nbsp;
+                        <!-- 删除选项 -->
+                        <button
+                          nz-button
+                          nzSize="small"
+                          (click)="
+                            changeAskAnswerOptions(
+                              optionsInSchemaItem(i),
+                              optionIndex,
+                              true
+                            )
+                          "
+                        >
+                          -
+                        </button>
+                      </nz-form-item>
+                    </ng-container>
+                  </div>
+                </form>
+              </ng-template>
+            </div>
+            <div nz-row style="margin-bottom: 10px">
+              <!-- <div nz-col>题型配置：</div> -->
+              <div nz-col="12">
+                <button
+                  nz-button
+                  nzType="primary"
+                  nzSize="small"
+                  (click)="changeAsk(i)"
+                >
+                  添加题
+                </button>
+                &nbsp;
+                <button nz-button nzSize="small" (click)="changeAsk(i, true)">
+                  删除题
+                </button>
+                &nbsp;
+                <span>题型：</span>
+                <nz-select
+                  style="width: 120px"
+                  nzSize="small"
+                  nzAllowClear
+                  formControlName="type"
+                  nzPlaceHolder="请选择题型"
+                >
+                  <nz-option [nzLabel]="'单选'" [nzValue]="AskType.Radio">
+                  </nz-option>
+                  <nz-option [nzLabel]="'复选'" [nzValue]="AskType.Checkbox">
+                  </nz-option>
+                  <nz-option [nzLabel]="'文本域'" [nzValue]="AskType.TextArea">
+                  </nz-option>
+                </nz-select>
+                &nbsp;
+                <span>是否必填：</span>
+                <nz-select
+                  style="width: 100px"
+                  nzSize="small"
+                  formControlName="isRequired"
+                  nzPlaceHolder="是否必填"
+                  nzAllowClear
+                >
+                  <nz-option [nzLabel]="'是'" [nzValue]="true"> </nz-option>
+                  <nz-option [nzLabel]="'否'" [nzValue]="false"> </nz-option>
+                </nz-select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </form>
+      <div style="border-bottom: 1px solid #000"></div>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button (click)="save()">保存</button>
+  &nbsp;
+  <button nz-button nzType="primary" (click)="outgiving()">分发</button>
+</form>

@@ -6,33 +6,64 @@ import { Router } from '@angular/router';
 
 const MockCreatorName = 'qwe111';
 
+export enum AskType {
+  Radio = 'radio',
+  Checkbox = 'checkbox',
+  TextArea = 'textarea',
+}
+
+export interface AnswerOption {
+  label: string;
+  value: string;
+}
+
+export interface SurveyPaperItem {
+  title: string;
+  type: AskType;
+  isRequired: boolean;
+  options?: string[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class SurveyService {
   constructor(private router: Router) {}
 
+  statusOptions = [
+    { label: '编辑中', value: 'edit' },
+    {
+      label: '分发中',
+      value: 'outgiving',
+    },
+  ];
+
   getClassify(params: any): Observable<any> {
     const data = [
       {
+        id: 1,
         name: '教育',
         creator_name: MockCreatorName,
         creat_at: new Date(),
       },
       {
+        id: 2,
         name: '母婴',
         creator_name: MockCreatorName,
         creat_at: addHours(new Date(), -2),
       },
       {
+        id: 3,
         name: '建筑',
         creator_name: MockCreatorName,
         creat_at: addHours(new Date(), +5),
       },
       {
+        id: 4,
         name: '学前教育',
         creator_name: MockCreatorName,
         creat_at: addDays(new Date(), -2),
       },
       {
+        id: 5,
         name: '玩具',
         creator_name: MockCreatorName,
         creat_at: addDays(new Date(), 1),

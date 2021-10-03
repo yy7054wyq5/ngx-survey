@@ -41,8 +41,11 @@
         <nz-form-label nzFor="status" nzSpan="6">状态</nz-form-label>
         <nz-form-control>
           <nz-select formControlName="status" nzPlaceHolder="状态" nzAllowClear>
-            <nz-option [nzLabel]="'编辑中'" [nzValue]="'edit'"> </nz-option>
-            <nz-option [nzLabel]="'分发中'" [nzValue]="'outgiving'">
+            <nz-option
+              *ngFor="let option of surveyService.statusOptions"
+              [nzLabel]="option.label"
+              [nzValue]="option.value"
+            >
             </nz-option>
           </nz-select>
         </nz-form-control>
