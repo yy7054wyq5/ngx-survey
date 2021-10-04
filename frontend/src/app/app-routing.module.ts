@@ -10,11 +10,16 @@ import { LoginGuard } from './core/login.guard';
 import { SysSettingComponent } from './pages/sys-setting/sys-setting.component';
 import { AddComponent } from './pages/survey-template/add/add.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
+import { FillSurveyComponent } from './pages/fill-survey/fill-survey.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'fill-survey',
+    component: FillSurveyComponent,
   },
   {
     path: '',

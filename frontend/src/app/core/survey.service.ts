@@ -194,6 +194,14 @@ export class SurveyService {
     });
   }
 
+  getTemplateschema(params: any): Observable<any> {
+    const msg = localStorage.getItem(LocalTemplate);
+    if (msg) {
+      return of(JSON.parse(msg));
+    }
+    return of(null);
+  }
+
   getTemplate(params: any): Observable<{ data: Array<any>; page: Page }> {
     const data = [
       {
