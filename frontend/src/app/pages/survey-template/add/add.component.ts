@@ -49,43 +49,6 @@ export class AddComponent implements OnInit {
   AskType = AskType;
   classifyList$: Observable<Array<any>>;
   Words = Words;
-  // [
-  //   {
-  //     title: '这是单选题',
-  //     type: AskType.Radio,
-  //     isRequired: true,
-  //     options: [
-  //       {
-  //         label: '选项 1',
-  //         value: 'A',
-  //       },
-  //       {
-  //         label: '选项 2',
-  //         value: 'B',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: '这是多选题',
-  //     type: AskType.Checkbox,
-  //     isRequired: true,
-  //     options: [
-  //       {
-  //         label: '选项 1',
-  //         value: 'A',
-  //       },
-  //       {
-  //         label: '选项 2',
-  //         value: 'B',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: '这是简答题',
-  //     type: AskType.TextArea,
-  //     isRequired: false,
-  //   },
-  // ];
 
   form = this.fb.group({
     classify: ['', [Validators.required]],

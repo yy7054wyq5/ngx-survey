@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SysSettingComponent } from './sys-setting.component';
 
@@ -8,9 +10,9 @@ describe('SysSettingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SysSettingComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [SysSettingComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

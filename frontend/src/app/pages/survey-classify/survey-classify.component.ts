@@ -28,15 +28,15 @@ export class SurveyClassifyComponent extends QueryPage implements OnInit {
     id: [''],
   });
 
-  ngOnInit(): void {
-    this.queryForm = this.fb.group({
-      creator_name: [''],
-      create_time: new FormControl([]),
-      classify_name: [''],
-      page: [this.page.current],
-      pageSize: [this.page.size],
-    });
+  queryForm = this.fb.group({
+    creator_name: [''],
+    create_time: [''],
+    classify_name: [''],
+    page: [this.page.current],
+    pageSize: [this.page.size],
+  });
 
+  ngOnInit(): void {
     this.getQuery();
     this.query$.subscribe({
       next: (query) => {

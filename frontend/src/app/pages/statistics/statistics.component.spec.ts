@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { StatisticsComponent } from './statistics.component';
 
@@ -8,9 +10,9 @@ describe('StatisticsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatisticsComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule],
+      declarations: [StatisticsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
