@@ -1,1 +1,38 @@
-<p>sys-setting works!</p>
+<div style="display: flex; align-items: center">
+  <span>成员</span>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <nz-select [(ngModel)]="memberId" nzPlaceHolder="选择成员" nzAllowClear>
+    <nz-option
+      *ngFor="let item of (memberService.getMember({}) | async).data"
+      [nzLabel]="item.account"
+      [nzValue]="item.id"
+    >
+    </nz-option>
+  </nz-select>
+</div>
+<br />
+<div>
+  <h3>菜单设置</h3>
+  <ul>
+    <li>
+      <input type="checkbox" />
+      <span>问卷信息管理</span>
+    </li>
+    <li>
+      <input type="checkbox" />
+      <span>问卷结果统计</span>
+    </li>
+    <li>
+      <input type="checkbox" />
+      <span>问卷分类管理</span>
+    </li>
+    <li>
+      <input type="checkbox" />
+      <span>成员管理</span>
+    </li>
+    <li>
+      <input type="checkbox" />
+      <span>系统设置</span>
+    </li>
+  </ul>
+</div>
