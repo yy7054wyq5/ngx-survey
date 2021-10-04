@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MD5 } from 'crypto-js';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Page } from './query-page.class';
 
 @Injectable({ providedIn: 'root' })
 export class MemberService {
@@ -19,5 +20,25 @@ export class MemberService {
 
   logout(): Promise<unknown> {
     return this.router.navigate(['/login']).then(() => {});
+  }
+
+  getMember(params: any): Observable<{ page: Page; data: Array<any> }> {
+    return of({
+      page: new Page({
+        current: 1,
+        size: 10,
+        items: 2,
+      }),
+      data: [
+        {
+          account: 'qwe111',
+          id: 2,
+        },
+        {
+          account: 'qwe123',
+          id: 3,
+        },
+      ],
+    });
   }
 }

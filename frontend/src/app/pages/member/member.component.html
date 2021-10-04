@@ -1,1 +1,69 @@
-<p>member works!</p>
+<form nz-form [formGroup]="queryForm" (ngSubmit)="query$.next({ page: 1 })">
+  <div nz-row nzGutter="0">
+    <nz-form-item nz-col="8">
+      <nz-form-label nzFor="account" nzSpan="6">账号</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="account" placeholder="账号" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-col="8">
+      <button nz-button nzType="primary">搜索</button>
+      &nbsp;
+      <button nz-button (click)="edit()">新增</button>
+    </nz-form-item>
+  </div>
+</form>
+<nz-table
+  [nzData]="data"
+  [nzLoading]="loading"
+  [nzLoadingDelay]="300"
+  [nzFrontPagination]="false"
+  nzTableLayout="fixed"
+  ><thead>
+    <tr>
+      <th>账号</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data; index as i">
+      <td>{{ row.account }}</td>
+      <td>
+        <button nz-button nzSize="small" (click)="remove(i)">删除</button>
+        &nbsp;
+        <button nz-button nzSize="small" (click)="edit(row)">修改密码</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-pagination
+  [nzPageIndex]="page.current"
+  [nzPageSize]="page.size"
+  [nzTotal]="page.items"
+  (nzPageIndexChange)="query$.next({ page: $event })"
+></nz-pagination>
+
+<ng-template #editTpl>
+  <form nz-form [formGroup]="editForm">
+    <div nz-row>
+      <nz-form-item nzFlex>
+        <nz-form-label nzFor="account" nzSpan="6" nzRequired
+          >账号</nz-form-label
+        >
+        <nz-form-control>
+          <input type="text" nz-input formControlName="account" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-row>
+      <nz-form-item nzFlex>
+        <nz-form-label nzFor="password" nzSpan="6">密码</nz-form-label>
+        <nz-form-control>
+          <input type="text" nz-input formControlName="password" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </form>
+</ng-template>
