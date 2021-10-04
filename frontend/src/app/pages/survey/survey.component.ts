@@ -14,20 +14,20 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class SurveyComponent extends QueryPage implements OnInit {
   constructor(
     private fb: FormBuilder,
-    private surveyService: SurveyService,
+    public surveyService: SurveyService,
     private nzMessageService: NzMessageService,
     private nzModalService: NzModalService
   ) {
     super();
   }
 
-  @ViewChild('addClassifyTpl') addClassifyTpl: TemplateRef<object>;
+  @ViewChild('viewAnswerTpl') viewAnswerTpl: TemplateRef<object>;
 
   ngOnInit(): void {
     this.queryForm = this.fb.group({
-      creator_name: [''],
-      create_time: new FormControl([]),
+      title: [''],
       classify_name: [''],
+      submit_at: [''],
       page: [this.page.current],
       pageSize: [this.page.size],
     });
@@ -46,4 +46,11 @@ export class SurveyComponent extends QueryPage implements OnInit {
       this.page = res.page;
     });
   }
+
+  remove(index: number): void {
+    this.data.splice(index);
+  }
+
+  // TODO:
+  viewSurvey(): void {}
 }

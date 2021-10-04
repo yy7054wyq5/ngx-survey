@@ -1,1 +1,39 @@
-<p>statistics works!</p>
+<form nz-form [formGroup]="queryForm" (ngSubmit)="query$.next({ page: 1 })">
+  <div nz-row nzGutter="0">
+    <nz-form-item nz-col="8">
+      <nz-form-label nzFor="title" nzSpan="6">标题</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="title" placeholder="标题" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-col="8">
+      <nz-form-label nzFor="classify_name" nzSpan="6">分类名</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="classify_name" placeholder="分类名" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-col="8">
+      <button nz-button nzType="primary">搜索</button>
+      &nbsp;
+    </nz-form-item>
+  </div>
+</form>
+
+<ng-container *ngFor="let item of data">
+  <div>
+    <h3>{{ item.title }}</h3>
+    <div *ngIf="item.options">
+      <ng-container *ngFor="let op of item.options">
+        <div style="display: flex">
+          <span class="label">{{ op.label }}：</span>
+          <span>{{ op.value }}</span>
+        </div>
+      </ng-container>
+    </div>
+    <div *ngIf="item.value">
+      <ng-container *ngFor="let v of item.value">
+        <div>{{ v }}</div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

@@ -1,9 +1,9 @@
 <form nz-form [formGroup]="queryForm" (ngSubmit)="query$.next({ page: 1 })">
   <div nz-row nzGutter="0">
     <nz-form-item nz-col="8">
-      <nz-form-label nzFor="creator_name" nzSpan="6">创建人</nz-form-label>
+      <nz-form-label nzFor="title" nzSpan="6"> 标题</nz-form-label>
       <nz-form-control>
-        <input nz-input formControlName="creator_name" placeholder="创建人" />
+        <input nz-input formControlName="title" placeholder="标题" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-col="8">
@@ -13,9 +13,9 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-col="8">
-      <nz-form-label nzFor="create_time" nzSpan="6">创建时间</nz-form-label>
+      <nz-form-label nzFor="submit_at" nzSpan="6">提交时间</nz-form-label>
       <nz-form-control
-        ><nz-range-picker formControlName="create_time"></nz-range-picker
+        ><nz-range-picker formControlName="submit_at"></nz-range-picker
       ></nz-form-control>
     </nz-form-item>
     <nz-form-item nz-col="8">
@@ -39,17 +39,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of data">
+    <tr *ngFor="let row of data; index as i">
       <td>{{ row.templateTitile }}</td>
       <td>{{ row.classify_name }}</td>
       <td>{{ row.submit_at | date: "yyyy-MM-dd HH:mm:ss" }}</td>
       <td>
-        <button nz-button nzSize="small">删除</button>&nbsp;<button
-          nz-button
-          nzSize="small"
-        >
-          查看
-        </button>
+        <button nz-button nzSize="small" (click)="remove(i)">删除</button
+        >&nbsp;<button nz-button nzSize="small">查看</button>
       </td>
     </tr>
   </tbody>
@@ -61,3 +57,10 @@
   [nzTotal]="page.items"
   (nzPageIndexChange)="query$.next({ page: $event })"
 ></nz-pagination>
+
+<ng-template #viewAnswerTpl>
+  <div nz-row>
+    <div nz-col="4">模板标题</div>
+    <div nz-col="20"></div>
+  </div>
+</ng-template>

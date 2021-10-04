@@ -149,6 +149,51 @@ export class SurveyService {
     return of(true);
   }
 
+  getStatistics(params: any): Observable<{ data: Array<any> }> {
+    return of({
+      data: [
+        {
+          title: '孩子对以下哪项感兴趣？',
+          options: [
+            {
+              label: '丰富色彩的图画',
+              value: 10,
+            },
+            {
+              label: '需要动手拼接的玩具',
+              value: 20,
+            },
+            {
+              label: '可以变形的玩具',
+              value: 40,
+            },
+            {
+              label: '动画片',
+              value: 50,
+            },
+          ],
+        },
+        {
+          title: '孩子喜欢和小朋友一起玩吗？',
+          options: [
+            {
+              label: '喜欢',
+              value: 40,
+            },
+            {
+              label: '不喜欢',
+              value: 20,
+            },
+          ],
+        },
+        {
+          title: '您有想说的吗？',
+          value: ['XXXXX', 'YYYYY'],
+        },
+      ],
+    });
+  }
+
   getTemplate(params: any): Observable<{ data: Array<any>; page: Page }> {
     const data = [
       {
