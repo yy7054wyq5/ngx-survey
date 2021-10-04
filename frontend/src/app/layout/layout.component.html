@@ -13,6 +13,13 @@
       </li>
       <li
         nz-menu-item
+        routerLink="statistics"
+        routerLinkActive="ant-menu-item-selected"
+      >
+        <span>问卷结果统计</span>
+      </li>
+      <li
+        nz-menu-item
         routerLink="survey-classify"
         routerLinkActive="ant-menu-item-selected"
       >
@@ -31,6 +38,7 @@
         </ul>
       </li>
       <li
+        *ngIf="currentUserService?.data.accout === 'admin'"
         nz-menu-item
         routerLink="member"
         routerLinkActive="ant-menu-item-selected"

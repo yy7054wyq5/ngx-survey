@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   AskType,
+  LocalTemplate,
   SurveyPaperItem,
   SurveyService,
 } from '../../../core/survey.service';
@@ -107,7 +108,10 @@ export class AddComponent implements OnInit {
     console.log(v);
   }
 
-  outgiving(): void {}
+  outgiving(): void {
+    const schema = this.form.getRawValue();
+    this.surveyService.outgivingTemplate('1', schema);
+  }
 
   optionChange(value: string): void {}
 

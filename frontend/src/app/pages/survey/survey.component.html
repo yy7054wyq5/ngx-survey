@@ -1,1 +1,63 @@
-<p>survey works!</p>
+<form nz-form [formGroup]="queryForm" (ngSubmit)="query$.next({ page: 1 })">
+  <div nz-row nzGutter="0">
+    <nz-form-item nz-col="8">
+      <nz-form-label nzFor="creator_name" nzSpan="6">创建人</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="creator_name" placeholder="创建人" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-col="8">
+      <nz-form-label nzFor="classify_name" nzSpan="6">分类名</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="classify_name" placeholder="分类名" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-col="8">
+      <nz-form-label nzFor="create_time" nzSpan="6">创建时间</nz-form-label>
+      <nz-form-control
+        ><nz-range-picker formControlName="create_time"></nz-range-picker
+      ></nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-col="8">
+      <button nz-button nzType="primary">搜索</button>
+      &nbsp;
+    </nz-form-item>
+  </div>
+</form>
+<nz-table
+  [nzData]="data"
+  [nzLoading]="loading"
+  [nzLoadingDelay]="300"
+  [nzFrontPagination]="false"
+  nzTableLayout="fixed"
+  ><thead>
+    <tr>
+      <th>模板标题</th>
+      <th>分类</th>
+      <th>提交时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data">
+      <td>{{ row.templateTitile }}</td>
+      <td>{{ row.classify_name }}</td>
+      <td>{{ row.submit_at | date: "yyyy-MM-dd HH:mm:ss" }}</td>
+      <td>
+        <button nz-button nzSize="small">删除</button>&nbsp;<button
+          nz-button
+          nzSize="small"
+        >
+          查看
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-pagination
+  [nzPageIndex]="page.current"
+  [nzPageSize]="page.size"
+  [nzTotal]="page.items"
+  (nzPageIndexChange)="query$.next({ page: $event })"
+></nz-pagination>

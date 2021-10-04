@@ -5,16 +5,12 @@ import { Page } from './query-page.class';
 import { Router } from '@angular/router';
 
 const MockCreatorName = 'qwe111';
+export const LocalTemplate = 'LocalTemplate';
 
 export enum AskType {
   Radio = 'radio',
   Checkbox = 'checkbox',
   TextArea = 'textarea',
-}
-
-export interface AnswerOption {
-  label: string;
-  value: string;
 }
 
 export interface SurveyPaperItem {
@@ -97,6 +93,60 @@ export class SurveyService {
 
   outGiving(id: string): Promise<boolean> {
     return of(true).toPromise();
+  }
+
+  getSurvey(params: any): Observable<{ data: Array<any>; page: Page }> {
+    const data = [
+      {
+        id: 1,
+        templateId: 1,
+        templateTitile: '想给孩子报什么延时课',
+        classify_name: '教育',
+        submit_at: addDays(new Date(), 4),
+        answer: ['A,B', 'A', ''],
+      },
+      {
+        id: 2,
+        templateId: 1,
+        templateTitile: '想给孩子报什么延时课',
+        classify_name: '教育',
+        submit_at: addWeeks(new Date(), -2),
+        answer: ['B,C', 'B', '孩子不想上延时课'],
+      },
+      {
+        id: 3,
+        templateId: 1,
+        templateTitile: '想给孩子报什么延时课',
+        classify_name: '教育',
+        submit_at: addDays(new Date(), 7),
+        answer: ['C,D', 'A', ''],
+      },
+      {
+        id: 4,
+        templateId: 1,
+        templateTitile: '想给孩子报什么延时课',
+        classify_name: '教育',
+        submit_at: addWeeks(new Date(), 1),
+        answer: ['B,D', 'B', 'XXXXX'],
+      },
+      {
+        id: 5,
+        templateId: 1,
+        templateTitile: '想给孩子报什么延时课',
+        classify_name: '教育',
+        submit_at: addWeeks(new Date(), 2),
+        answer: ['A,B', 'B', '一样一样'],
+      },
+    ];
+    return of({
+      page: new Page({ current: 1, size: 10, items: 5 }),
+      data,
+    });
+  }
+
+  outgivingTemplate(id: string, data: any): Observable<any> {
+    localStorage.setItem(LocalTemplate, JSON.stringify(data));
+    return of(true);
   }
 
   getTemplate(params: any): Observable<{ data: Array<any>; page: Page }> {
