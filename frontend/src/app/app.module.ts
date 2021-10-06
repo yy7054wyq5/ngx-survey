@@ -21,6 +21,7 @@ import { SysSettingComponent } from './pages/sys-setting/sys-setting.component';
 import { AddComponent } from './pages/survey-template/add/add.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { FillSurveyComponent } from './pages/fill-survey/fill-survey.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 registerLocaleData(zh);
 
@@ -37,6 +38,7 @@ registerLocaleData(zh);
     AddComponent,
     StatisticsComponent,
     FillSurveyComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     SharedModule,

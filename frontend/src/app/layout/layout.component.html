@@ -65,6 +65,9 @@
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu nzSelectable>
               <li nz-menu-item (click)="memberService.logout()">退出</li>
+              <li nz-menu-item (click)="memberService.goChangePassword()">
+                修改密码
+              </li>
             </ul>
           </nz-dropdown-menu>
         </div>

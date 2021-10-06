@@ -22,6 +22,14 @@ export class MemberService {
     return this.router.navigate(['/login']).then(() => {});
   }
 
+  patchPassword(): Observable<void> {
+    return of();
+  }
+
+  goChangePassword(): Promise<boolean> {
+    return this.router.navigate(['/change-password']);
+  }
+
   getMember(params: any): Observable<{ page: Page; data: Array<any> }> {
     return of({
       page: new Page({
