@@ -1,4 +1,12 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+  Req,
+} from '@nestjs/common';
+import { Request } from 'express';
 import { AppService } from './app.service';
 
 @Controller()
@@ -6,14 +14,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
+  getHello(): object {
     return this.appService.getHello();
-  }
-
-  @Post('/registe') login(): { accout: string; password: string } {
-    return {
-      accout: 'admin',
-      password: '',
-    };
   }
 }

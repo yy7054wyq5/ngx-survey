@@ -12,11 +12,16 @@ import { AddComponent } from './pages/survey-template/add/add.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { FillSurveyComponent } from './pages/fill-survey/fill-survey.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'fill-survey',

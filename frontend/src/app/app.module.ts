@@ -22,6 +22,7 @@ import { AddComponent } from './pages/survey-template/add/add.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { FillSurveyComponent } from './pages/fill-survey/fill-survey.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 registerLocaleData(zh);
 
@@ -39,6 +40,7 @@ registerLocaleData(zh);
     StatisticsComponent,
     FillSurveyComponent,
     ChangePasswordComponent,
+    RegisterComponent,
   ],
   imports: [
     SharedModule,
